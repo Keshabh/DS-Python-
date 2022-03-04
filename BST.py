@@ -55,9 +55,12 @@ root =  Node(10)
 
 root.insert(12)
 root.insert(3)
+root.insert(24)
+root.insert(1)
 
 print("preorder: ",end=" ")
 root.preorder()
+#for verification: inorder always gives ouput in sorted order.
 print("\ninorder: ",end=" ")
 root.inorder()
 print("\npostorder: ",end=" ")
