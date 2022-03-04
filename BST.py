@@ -47,6 +47,24 @@ class Node:
         if self.right:
             self.right.postorder()
         print(self.data,end=" ")
+        
+        
+#function to get the height of tree
+#height = distance from root to farthest leaf node
+def height(root):
+    pass
+
+#function to do level order traversal
+def level_order(root):
+    pass
+
+#function to do vertical order traversal
+def vertical_level(root):
+    pass
+
+#function to print all the top view of a tree
+def top_view(root):
+    pass
             
 
 #create root node
