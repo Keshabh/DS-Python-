@@ -52,11 +52,33 @@ class Node:
 #function to get the height of tree
 #height = distance from root to farthest leaf node
 def height(root):
-    pass
+    #lets use recursion to get the height
+    #concept: get the height from left sub-tree and height from right sub-tree , keep the maximum one and
+    #add 1 to it, for the root node.
+    #if sub-nodes are none, it returns -1 so that height of node with 0 child nodes has -1 + 1 = 0 height.
+    if root is None:
+        return -1
+    return max(height(root.left),height(root.right))+1
 
 #function to do level order traversal
 def level_order(root):
-    pass
+    #printig the nodes in tree level by level horizontally from height 0 till height h.
+    #we can use BFS i.e Breadth First Search (uses Queue)
+    #BFS: insert root
+    # pop and insert its neighbors, and display the popped node element, continue this step,
+    #till nothing is left in the queue.
+    queue=[]
+    queue.append(root)
+    while queue:
+        #dequeue the first node
+        temp = queue.pop(0)
+        #display the element of the node popped
+        print(temp.data,end=" ")
+        #insert all child nodes of element dequeue i.e temp
+        if temp.left:
+            queue.append(temp.left)
+        if temp.right:
+            queue.append(temp.right)
 
 #function to do vertical order traversal
 def vertical_level(root):
@@ -75,6 +97,9 @@ root.insert(12)
 root.insert(3)
 root.insert(24)
 root.insert(1)
+root.insert(23)
+root.insert(45)
+root.insert(90)
 
 print("preorder: ",end=" ")
 root.preorder()
@@ -83,6 +108,10 @@ print("\ninorder: ",end=" ")
 root.inorder()
 print("\npostorder: ",end=" ")
 root.postorder()
+
+print("\n\nHeight of the tree: ",height(root))
+print("\nLevel Order traversal: ",end=" ")
+level_order(root)
             
             
     
