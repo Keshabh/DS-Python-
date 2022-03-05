@@ -85,9 +85,24 @@ def vertical_level(root):
     pass
 
 #function to print all the top view of a tree
-def top_view(root):
-    pass
-            
+def top_view(root,vl,hl,d):
+    #we need nodes from each vertical level and all the nodes should be the top one.
+    #we will store nodes from each vertical level
+    #but if there is another element from the same vertical level, we will compare the heigth and select 
+    #the node with the lower height.
+    if root:
+        #if node with vertical level is not present in dictionary, then insert it
+        if vl not in d:
+            #store value as (root.data,hl)
+            d[vl]=[root.data,hl]
+        else:
+            #if vl already exist, then compare the hl, and if this one is smaller, insert this one.
+            if hl<d[vl][1]:
+                d[vl]=[root.data,hl]
+        top_view(root.left,vl-1,hl+1,d)
+        top_view(root.right,vl+1,hl+1,d)
+    return d
+        
 
 #create root node
 root =  Node(10)
@@ -112,7 +127,12 @@ root.postorder()
 print("\n\nHeight of the tree: ",height(root))
 print("\nLevel Order traversal: ",end=" ")
 level_order(root)
-            
+
+print("\n\nTop View of the tree: ",end=" ")
+#d = dictionary contains all the top view nodes as [node.value,node's height]
+d=top_view(root,vl=0,hl=0,d={})
+for i in sorted(d):
+    print(d[i][0],end=" ")
             
     
     
